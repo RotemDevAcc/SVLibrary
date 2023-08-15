@@ -38,16 +38,9 @@
     {
       "id": 6,
       "bname": "Story Of My Life",
-      "author": "Dictator Netanyahu",
+      "author": "Benjamin Netanyahu",
       "category": "Politics",
       "img": "https://www.megapro.org.il/images/ul240756/924d32ad3903a12a87d5cf8448340bb5.jpg"
-    },
-    {
-      "id": 7,
-      "bname": "Story Of My Life",
-      "author": "Dictator Netanyahu",
-      "category": "Politics",
-      "img": "http://127.0.0.1:5500/images/harry.jpeg"
     }
   ]
 }

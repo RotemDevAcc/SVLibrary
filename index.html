@@ -104,11 +104,11 @@
 
         }
         function updateIndex() {
+            if(bIndex == -1) bIndex = 0
             localStorage.setItem("CurrentBook", bIndex)
         }
 
         function DisplayBook(NoBooks) {
-
             if (NoBooks) {
                 display.innerHTML = "No Books To Show"
                 displaypicture.innerHTML = ""
@@ -200,10 +200,16 @@
 
         async function ResetBooks() {
             let storedBooks = await fetch('http://localhost:3000/books').then(response => response.json())
-            Books = storedBooks
-            bIndex = 0
-            updateIndex();
-            DisplayBook();
+
+            if(storedBooks.length){
+                Books = storedBooks
+                bIndex = 0
+                updateIndex();
+                DisplayBook();
+            }else {
+                alert("Server Has No Books, Please Add Them.")
+            }
+
         }
 
         function FlipBooks() {
@@ -216,12 +222,18 @@
             if (!CanInteract()) return
 
             let lastbook = Books.length - 1
-
+            console.log(lastbook)
             if (bIndex >= lastbook) {
                 bIndex = lastbook - 1;
                 updateIndex();
             }
 
+            if (bIndex == -1) bIndex = 0
+
+
+            fetch("http://localhost:3000/books/" + Books[lastbook].id, {
+                method: 'DELETE',
+            })
 
             Books.splice(lastbook)
 
